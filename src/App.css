@@ -1,0 +1,16 @@
+body {
+  background-color: rgb(39, 39, 104);
+  color: antiquewhite;
+}
+
+body.reverse {
+  background-color: antiquewhite;
+}
+
+.btn {
+  padding: .5rem;
+}
+
+.submit-btn-style {
+  background-color: yellow;
+}
