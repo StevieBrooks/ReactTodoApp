@@ -1,14 +1,15 @@
-function TaskContainer( { tasks } ) {
+import TaskCard from "./TaskCard"
+
+function TaskContainer( { tasks, setTasks } ) {
     return (<>
     
         <ul>
             {tasks.map((task, index) => (
-                <div key={index}>
-                    <p>{task.type}</p>
-                    <li>{task.task}</li>
-                    <p><strong>Assigned to: </strong>{task.assigned}</p>
-                    <button>Delete</button>
+
+                <div key={index} data-index={index}>
+                    <TaskCard tasks={tasks} setTasks={setTasks} task={task} index={index} />
                 </div>
+                
             ))}
         </ul>
 
@@ -17,4 +18,4 @@ function TaskContainer( { tasks } ) {
 
 export default TaskContainer
 
-// could put tasks in table format so can give headers for type, task, etc
+// Build edit task button and functionaltiy if feeling adventurous

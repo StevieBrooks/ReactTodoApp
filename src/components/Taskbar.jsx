@@ -1,5 +1,7 @@
-import { useState } from "react"
 import Button from "./Button"
+
+import PropTypes from 'prop-types'
+import { useState } from "react"
 
 function Taskbar( {reversed, setTasks } ) {
 
@@ -10,20 +12,20 @@ function Taskbar( {reversed, setTasks } ) {
     const btnStyle = "submit-btn-style"
 
     const tagSelectOptions = [
-        {value: "", label: "- Select Tag -"},
+        {value: "", label: "- Category -"},
         {value: "Home", label: "Home"},
         {value: "Work", label: "Work"},
         {value: "School", label: "School"},
-        {value: "Morning", label: "Morning"},
-        {value: "Afternoon", label: "Afternoon"},
-        {value: "Evening", label: "Evening"}
+        {value: "Social", label: "Social"},
+        {value: "Family", label: "Family"}
     ]
 
     const assignSelectOptions = [
-        {value: "", label: "- Assign To -"},
-        {value: "Myself", label: "Myself"},
-        {value: "Bobby", label: "Bobby"},
-        {value: "Charlie", label: "Charlie"}
+        {value: "", label: "- Time -"},
+        {value: "Morning", label: "Morning"},
+        {value: "Afternoon", label: "Afternoon"},
+        {value: "Evening", label: "Evening"},
+        {value: "Weekend", label: "Weekend"}
     ]
 
     const submitForm = (e) => {
@@ -71,6 +73,11 @@ function Taskbar( {reversed, setTasks } ) {
 
         </div>
     </>)
+}
+
+Taskbar.propTypes = {
+    reversed: PropTypes.string,
+    setTasks: PropTypes.func.isRequired
 }
 
 export default Taskbar
