@@ -49,25 +49,25 @@ function Taskbar( {reversed, setTasks } ) {
 
 
     return (<>
-        <div className="taskbar-inputs">
+        <div className="taskbar-inputs flex justify-center my-5">
 
-            <form onSubmit={submitForm}>
+            <form className=" bg-blue-five p-2 rounded-md items-start" onSubmit={submitForm}>
 
-                <select name="tagSelect" id="tagSelect" className="tag-select" onChange={(e) => setNewTag(e.target.value)} required>
+                <select name="tagSelect" id="tagSelect" className="text-blue-five p-1 m-1" onChange={(e) => setNewTag(e.target.value)} required>
                     {tagSelectOptions.map((option, index) => (
                         <option key={index} value={option.value}>{option.label}</option>
                     ))}
                 </select>
 
-                <input type="text" id="todoInput" className="todo-input" placeholder="Add task..." onChange={(e) => setNewTask(e.target.value)} required/>
+                <input type="text" id="todoInput" className="text-blue-five p-1 m-1" placeholder="Add task..." onChange={(e) => setNewTask(e.target.value)} required/>
 
-                <select name="assignSelect" id="assignSelect" className="assign-select" onChange={(e) => setNewAssign(e.target.value)} required>
+                <select name="assignSelect" id="assignSelect" className="text-blue-five p-1 m-1" onChange={(e) => setNewAssign(e.target.value)} required>
                     {assignSelectOptions.map((option, index) => (
                         <option key={index} value={option.value}>{option.label}</option>
                     ))}
                 </select>
 
-                <Button type="submit" btnContent="Submit" btnStyle={btnStyle} />
+                <Button type="submit" btnContent="Submit" btnStyle={btnStyle}  />
 
             </form>
 

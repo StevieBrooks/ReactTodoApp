@@ -1,4 +1,3 @@
-import '../App.css';
 
 function TaskCard( { tasks, setTasks, task, index } ) {
 
@@ -10,10 +9,10 @@ function TaskCard( { tasks, setTasks, task, index } ) {
 
     return (<>
     
-        <button onClick={doneClick}>Done</button>
-        <p className="bg-red-500 text-white p-4">{task.type}</p>
+        <p>{task.type}</p>
         <li>{task.task}</li>
-        <p><strong>Assigned to: </strong>{task.assigned}</p>
+        <p>{task.assigned}</p>
+        <button onClick={doneClick}>Done</button>
         <button>Delete</button>
 
     </>)

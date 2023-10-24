@@ -2,8 +2,8 @@ import PropTypes from 'prop-types'
 
 function Header( { headerTitle, reversed } ) {
     return (<>
-        <header className="todo-header">
-            <h1>{headerTitle}</h1>
+        <header className="flex justify-center bg-blue-five py-1">
+            <h1 className='text-5xl font-mono'>{headerTitle}</h1>
         </header>
     </>)
 }

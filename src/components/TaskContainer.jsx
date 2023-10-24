@@ -3,15 +3,16 @@ import TaskCard from "./TaskCard"
 function TaskContainer( { tasks, setTasks } ) {
     return (<>
     
-        <ul>
-            {tasks.map((task, index) => (
-
-                <div key={index}>
-                    <TaskCard tasks={tasks} setTasks={setTasks} task={task} index={index} />
-                </div>
-                
-            ))}
-        </ul>
+        <div className="w-4/5 mx-auto"> 
+            <ul>
+                {tasks.map((task, index) => (
+                    <div key={index} className="bg-blue-four py-3 flex justify-around items-center border-b border-solid">
+                        <TaskCard tasks={tasks} setTasks={setTasks} task={task} index={index} />
+                    </div>
+            
+                ))}
+            </ul>
+        </div>
 
     </>)
 }
