@@ -21,11 +21,9 @@ function App() {
   }
 
   const manageTasks = (item) => {
-    console.log(item)
 
     let updatedTasks = [...tasks]
     updatedTasks = updatedTasks.filter((task, index) => index !== item[0])
-    console.log(updatedTasks)
     setTasks(updatedTasks)
     
     setCompTasks([item[1], ...compTasks])

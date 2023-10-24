@@ -6,7 +6,7 @@ function TaskContainer( { tasks, setTasks } ) {
         <ul>
             {tasks.map((task, index) => (
 
-                <div key={index} data-index={index}>
+                <div key={index}>
                     <TaskCard tasks={tasks} setTasks={setTasks} task={task} index={index} />
                 </div>
                 
