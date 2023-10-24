@@ -4,25 +4,23 @@ import Taskbar from "./components/Taskbar"
 import PropTypes from 'prop-types'
 import './App.css';
 import { useState } from 'react';
+import TaskContainer from './components/TaskContainer';
 
 function App() {
 
   const [tasks, setTasks] = useState([])
-  const [newTask, setNewTask] = useState({
-    type: "",
-    task: "",
-    assigned: "",
-    completed: false
-  })
 
-  const handleTaskData = (type, task, assigned) => {
-    setNewTask({type: type, task: task, assigned: assigned})
+  const handleTasks = (item) => {
+    setTasks([item, ...tasks])
+    console.log(item)
   }
+
 
   return (<>
 
     <Header headerTitle="To-Do List" reversed="false" />
-    <Taskbar reversed="false" newTaskData={handleTaskData} setTasks={setTasks} />
+    <Taskbar reversed="false" setTasks={handleTasks} />
+    <TaskContainer tasks={tasks} />
 
 
   </>)

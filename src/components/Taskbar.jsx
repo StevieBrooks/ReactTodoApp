@@ -1,10 +1,11 @@
+import { useState } from "react"
 import Button from "./Button"
 
-function Taskbar( {reversed, newTaskData, setTasks } ) {
+function Taskbar( {reversed, setTasks } ) {
 
-    let tagSelect;
-    let todoInput;
-    let assignSelect;
+    const [newTag, setNewTag] = useState("")
+    const [newTask, setNewTask] = useState("")
+    const [newAssign, setNewAssign] = useState("")
 
     const btnStyle = "submit-btn-style"
 
@@ -25,39 +26,40 @@ function Taskbar( {reversed, newTaskData, setTasks } ) {
         {value: "Charlie", label: "Charlie"}
     ]
 
-    const handleTagChange = (input) => {
-        tagSelect = input
-    }
-
-    const handleInputChange = (input) => {
-        todoInput = input
-    }
-
-    const handleAssignChange = (input) => {
-        assignSelect = input
-    }
-
     const submitForm = (e) => {
 
-        e.preventDefault();
-        newTaskData(tagSelect, todoInput, assignSelect)
+        e.preventDefault()
+
+        const newItem = {
+            type: newTag,
+            task: newTask,
+            assigned: newAssign,
+            completed: false
+        }
+        setTasks(newItem)
+
+        setNewTag("")
+        setNewTask("")
+        setNewAssign("")
+        e.target.reset()
         
     }
+
 
     return (<>
         <div className="taskbar-inputs">
 
             <form onSubmit={submitForm}>
 
-                <select name="tagSelect" id="tagSelect" className="tag-select" onChange={(e) => handleTagChange(e.target.value)} required>
+                <select name="tagSelect" id="tagSelect" className="tag-select" onChange={(e) => setNewTag(e.target.value)} required>
                     {tagSelectOptions.map((option, index) => (
                         <option key={index} value={option.value}>{option.label}</option>
                     ))}
                 </select>
 
-                <input type="text" id="todoInput" className="todo-input" placeholder="Add task..." onChange={(e) => handleInputChange(e.target.value)} required/>
+                <input type="text" id="todoInput" className="todo-input" placeholder="Add task..." onChange={(e) => setNewTask(e.target.value)} required/>
 
-                <select name="assignSelect" id="assignSelect" className="assign-select" onChange={(e) => handleAssignChange(e.target.value)} required>
+                <select name="assignSelect" id="assignSelect" className="assign-select" onChange={(e) => setNewAssign(e.target.value)} required>
                     {assignSelectOptions.map((option, index) => (
                         <option key={index} value={option.value}>{option.label}</option>
                     ))}
