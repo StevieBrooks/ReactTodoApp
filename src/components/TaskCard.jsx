@@ -1,4 +1,6 @@
 import { FaThumbsUp, FaTrash } from "react-icons/fa6"
+import Button from "./Button";
+
 function TaskCard( { tasks, setTasks, task, index } ) {
 
     let condTypeStyling;
@@ -22,13 +24,14 @@ function TaskCard( { tasks, setTasks, task, index } ) {
 
     const doneClick = () => {
         const taskToMove = [index, tasks[index], "move"]
+        console.log(taskToMove)
         taskToMove[1].completed = true
         setTasks(taskToMove)
     }
 
     const deleteClick = (e) => {
-        console.log(e)
         const taskToDelete = [index, tasks[index], "delete"]
+        console.log(taskToDelete)
         setTasks(taskToDelete)
     }
 
@@ -38,8 +41,10 @@ function TaskCard( { tasks, setTasks, task, index } ) {
         <li className="basis-6/12 text-start">{task.task}</li>
         <p className="basis-2/12 text-start">{task.assigned}</p>
         <div className={task.completed ? "hidden" : "basis-2/12 text-end"}>
-            <button className="bg-blue-two m-1 p-1" onClick={doneClick}><FaThumbsUp /></button>
-            <button className="bg-blue-two m-1 p-1" onClick={deleteClick}><FaTrash /></button>
+            {/* <Button id="doneButton" btnContent={<FaThumbsUp />} />
+            <Button id="delButton" btnContent={<FaTrash />} /> */}
+            <button className="bg-blue-two m-1 p-2 rounded" onClick={doneClick}><FaThumbsUp /></button>
+            <button className="bg-blue-two m-1 p-2 rounded" onClick={deleteClick}><FaTrash /></button>
         </div>
 
     </div>)

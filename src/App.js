@@ -8,12 +8,34 @@ import CompContainer from './components/CompContainer';
 /*===========DEPENDENCIES============*/
 import PropTypes from 'prop-types'
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
 
   const [tasks, setTasks] = useState([])
   const [compTasks, setCompTasks] = useState([])
+
+  const placeholders = () => {
+    const placeholderTasks = [
+      {type: "School", task: "revise for exam", assigned: "Evening", completed: false},
+      {type: "Home", task: "look for new apartment", assigned: "Weekend", completed: false},
+      {type: "Family", task: "meet sister for lunch", assigned: "Afternoon", completed: false}
+    ]
+    setTasks(placeholderTasks)
+  }
+
+  const compPlaceholders = () => {
+    const compPlaceholderTasks = [
+      {type: "Work", task: "email new clients", assigned: "Morning", completed: true},
+      {type: "Social", task: "meet Dave for beers", assigned: "Weekend", completed: true},
+    ]
+    setCompTasks(compPlaceholderTasks)
+  }
+
+  useEffect(() => {
+    placeholders(); 
+    compPlaceholders();
+  }, []);
 
   const handleTasks = (item) => {
     setTasks([item, ...tasks])
@@ -38,7 +60,6 @@ function App() {
       // should have modal to check if user wants to delete
     }
 
-    
   }
 
 
@@ -64,5 +85,13 @@ export default App;
 /*==================BUGS================
 
   - adding tasks - typing ok, but if input remembers previous choices and you choose one a 2nd time, it will add everything except the task
+
+*/
+
+/* remaining tasks
+
+  - calls to button component and relevant styling
+  - filter by category/time - use filter icon
+  - add an edit button
 
 */
