@@ -22,11 +22,23 @@ function App() {
 
   const manageTasks = (item) => {
 
-    let updatedTasks = [...tasks]
-    updatedTasks = updatedTasks.filter((task, index) => index !== item[0])
-    setTasks(updatedTasks)
+    if(item[2] == "move") {
+
+      console.log(item)
+      let updatedTasks = [...tasks]
+      updatedTasks = updatedTasks.filter((task, index) => index !== item[0])
+      setTasks(updatedTasks)
+      setCompTasks([item[1], ...compTasks])
+
+    } else if (item[2] == "delete") {
+      
+      let updatedTasks = [...tasks]
+      updatedTasks = updatedTasks.filter((task, index) => index !== item[0])
+      setTasks(updatedTasks)
+      // should have modal to check if user wants to delete
+    }
+
     
-    setCompTasks([item[1], ...compTasks])
   }
 
 
@@ -47,3 +59,10 @@ export default App;
  */
 
 // figure out how to use useContext instead of prop drilling setTasks
+// look into local/session storage for the app
+
+/*==================BUGS================
+
+  - adding tasks - typing ok, but if input remembers previous choices and you choose one a 2nd time, it will add everything except the task
+
+*/
