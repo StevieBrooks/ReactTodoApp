@@ -1,4 +1,5 @@
 import Button from "./Button"
+import FilterModal from "./FilterModal"
 
 import PropTypes from 'prop-types'
 import { useState } from "react"
@@ -10,7 +11,7 @@ function Taskbar( {reversed, setTasks } ) {
     const [newTask, setNewTask] = useState("")
     const [newAssign, setNewAssign] = useState("")
 
-    const btnStyle = "submit-btn-style"
+    const [filterModalVisible, setFilterModalVisible] = useState(false)
 
     const tagSelectOptions = [
         {value: "", label: "- Category -"},
@@ -21,7 +22,7 @@ function Taskbar( {reversed, setTasks } ) {
         {value: "Family", label: "Family"}
     ]
 
-    const assignSelectOptions = [
+    const timeSelectOptions = [
         {value: "", label: "- Time -"},
         {value: "Morning", label: "Morning"},
         {value: "Afternoon", label: "Afternoon"},
@@ -30,6 +31,8 @@ function Taskbar( {reversed, setTasks } ) {
     ]
 
     const filterModal = () => {
+        console.log("hello")
+        setFilterModalVisible(true) 
         /* 
         - build modal with built in overlay and styling
         - needs dropdowns for cat and time in form, plus submit button
@@ -65,30 +68,30 @@ function Taskbar( {reversed, setTasks } ) {
     return (<>
         <div className="taskbar-inputs flex justify-center my-5">
 
-            <form className=" bg-blue-five p-2 rounded-md items-start" onSubmit={submitForm}>
+            <div className="taskbar-content  bg-blue-five p-2 rounded-md flex">
 
-                <Button btnContent={<FaArrowRotateLeft />} btnTask={filterModal} />
-                <Button btnContent={<FaFilter />} btnTask={resetFunction} />
+                <Button btnContent={<FaArrowRotateLeft />} btnTask={resetFunction} />
+                <Button btnContent={<FaFilter />} btnTask={filterModal} />
 
-                <select name="tagSelect" id="tagSelect" className="text-blue-five p-1 m-1" onChange={(e) => setNewTag(e.target.value)} required>
-                    {tagSelectOptions.map((option, index) => (
-                        <option key={index} value={option.value}>{option.label}</option>
-                    ))}
-                </select>
+                <form className="" onSubmit={submitForm}>
+                    <select name="tagSelect" id="tagSelect" className="text-blue-five p-1 m-1" onChange={(e) => setNewTag(e.target.value)} required>
+                        {tagSelectOptions.map((option, index) => (
+                            <option key={index} value={option.value}>{option.label}</option>
+                        ))}
+                    </select>
+                    <input type="text" id="todoInput" className="text-blue-five p-1 m-1" placeholder="Add task..." onChange={(e) => setNewTask(e.target.value)} required/>
+                    <select name="assignSelect" id="assignSelect" className="text-blue-five p-1 m-1" onChange={(e) => setNewAssign(e.target.value)} required>
+                        {timeSelectOptions.map((option, index) => (
+                            <option key={index} value={option.value}>{option.label}</option>
+                        ))}
+                    </select>
+                    <Button type="submit" btnContent="Submit" />
+                </form>
 
-                <input type="text" id="todoInput" className="text-blue-five p-1 m-1" placeholder="Add task..." onChange={(e) => setNewTask(e.target.value)} required/>
-
-                <select name="assignSelect" id="assignSelect" className="text-blue-five p-1 m-1" onChange={(e) => setNewAssign(e.target.value)} required>
-                    {assignSelectOptions.map((option, index) => (
-                        <option key={index} value={option.value}>{option.label}</option>
-                    ))}
-                </select>
-
-                <Button type="submit" btnContent="Submit" />
-
-            </form>
+            </div>
 
         </div>
+        {filterModalVisible && <FilterModal tagMenu={tagSelectOptions} timeMenu={timeSelectOptions} />}
     </>)
 }
 
