@@ -41,10 +41,8 @@ function TaskCard( { tasks, setTasks, task, index } ) {
         <li className="basis-6/12 text-start">{task.task}</li>
         <p className="basis-2/12 text-start">{task.assigned}</p>
         <div className={task.completed ? "hidden" : "basis-2/12 text-end"}>
-            {/* <Button id="doneButton" btnContent={<FaThumbsUp />} />
-            <Button id="delButton" btnContent={<FaTrash />} /> */}
-            <button className="bg-blue-two m-1 p-2 rounded" onClick={doneClick}><FaThumbsUp /></button>
-            <button className="bg-blue-two m-1 p-2 rounded" onClick={deleteClick}><FaTrash /></button>
+            <Button id="doneButton" btnTask={doneClick} btnContent={<FaThumbsUp />} />
+            <Button id="delButton" btnTask={deleteClick} btnContent={<FaTrash />} />
         </div>
 
     </div>)
@@ -52,4 +50,3 @@ function TaskCard( { tasks, setTasks, task, index } ) {
 
 export default TaskCard
 
-// for button, first use the component, plus use ternary to see if task completed
