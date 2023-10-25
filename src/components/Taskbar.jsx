@@ -2,6 +2,7 @@ import Button from "./Button"
 
 import PropTypes from 'prop-types'
 import { useState } from "react"
+import { FaFilter, FaArrowRotateLeft } from 'react-icons/fa6'
 
 function Taskbar( {reversed, setTasks } ) {
 
@@ -28,6 +29,19 @@ function Taskbar( {reversed, setTasks } ) {
         {value: "Weekend", label: "Weekend"}
     ]
 
+    const filterModal = () => {
+        /* 
+        - build modal with built in overlay and styling
+        - needs dropdowns for cat and time in form, plus submit button
+        - need a reset button also
+        - need to figure out how to filter without destroying state - make copy of tasks and compTasks to be used for following filters or reset
+        */
+    }
+
+    const resetFunction = () => {
+
+    }
+
     const submitForm = (e) => {
 
         e.preventDefault()
@@ -53,6 +67,9 @@ function Taskbar( {reversed, setTasks } ) {
 
             <form className=" bg-blue-five p-2 rounded-md items-start" onSubmit={submitForm}>
 
+                <Button btnContent={<FaArrowRotateLeft />} btnTask={filterModal} />
+                <Button btnContent={<FaFilter />} btnTask={resetFunction} />
+
                 <select name="tagSelect" id="tagSelect" className="text-blue-five p-1 m-1" onChange={(e) => setNewTag(e.target.value)} required>
                     {tagSelectOptions.map((option, index) => (
                         <option key={index} value={option.value}>{option.label}</option>
@@ -67,7 +84,7 @@ function Taskbar( {reversed, setTasks } ) {
                     ))}
                 </select>
 
-                <Button type="submit" btnContent="Submit" btnStyle={btnStyle}  />
+                <Button type="submit" btnContent="Submit" />
 
             </form>
 
