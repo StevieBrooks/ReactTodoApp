@@ -27,7 +27,7 @@ function FilterModal( { tagMenu, timeMenu, modVisible, modVisibleFunc, allTasks 
 
     return (<>
 
-        {modVisible && <div className="filter-modal-overlay bg-blue-five/[.8] w-screen h-screen fixed top-0 flex justify-center" onClick={(e) => {e.target.children[0].children[0] && modVisibleFunc(false)}}>
+        {modVisible && <div className="filter-modal-overlay bg-blue-five/[.8] w-screen h-screen fixed top-0 flex justify-center" onClick={(e) => e.target.className.includes("filter-modal-overlay") && modVisibleFunc(false)}>
 
             <div className="filter-modal mt-16 bg-blue-one h-fit w-1/2">
                 <div className="filter-modal-content text-blue-five">
