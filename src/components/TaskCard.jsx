@@ -1,4 +1,4 @@
-import { FaThumbsUp, FaTrash } from "react-icons/fa6"
+import { FaCheck, FaTrash } from "react-icons/fa6"
 import Button from "./Button";
 
 function TaskCard( { tasks, setTasks, task, index } ) {
@@ -41,7 +41,7 @@ function TaskCard( { tasks, setTasks, task, index } ) {
         <li className="basis-6/12 text-start">{task.task}</li>
         <p className="basis-2/12 text-start">{task.assigned}</p>
         <div className={task.completed ? "hidden" : "basis-2/12 text-end"}>
-            <Button id="doneButton" btnTask={doneClick} btnContent={<FaThumbsUp />} />
+            <Button id="doneButton" btnTask={doneClick} btnContent={<FaCheck />} />
             <Button id="delButton" btnTask={deleteClick} btnContent={<FaTrash />} />
         </div>
 

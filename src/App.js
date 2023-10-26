@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Taskbar from "./components/Taskbar"
 import TaskContainer from './components/TaskContainer';
 import CompContainer from './components/CompContainer';
+import FilterModal from "./components/FilterModal"
 
 
 /*===========DEPENDENCIES============*/
@@ -14,6 +15,39 @@ function App() {
 
   const [tasks, setTasks] = useState([])
   const [compTasks, setCompTasks] = useState([])
+
+
+  const [filterModalVisible, setFilterModalVisible] = useState(false)
+  const [allTasks, setAllTasks] = useState([])
+
+  const tagSelectOptions = [
+      {value: "", label: "- Category -"},
+      {value: "Home", label: "Home"},
+      {value: "Work", label: "Work"},
+      {value: "School", label: "School"},
+      {value: "Social", label: "Social"},
+      {value: "Family", label: "Family"}
+  ]
+
+  const timeSelectOptions = [
+      {value: "", label: "- Time -"},
+      {value: "Morning", label: "Morning"},
+      {value: "Afternoon", label: "Afternoon"},
+      {value: "Evening", label: "Evening"},
+      {value: "Weekend", label: "Weekend"}
+  ]
+
+  const filterModal = () => {
+      setFilterModalVisible(true) 
+      const tasksBackup = [tasks, compTasks]
+      setAllTasks([tasksBackup])
+  }
+
+  const resetFunction = () => {
+      console.log(allTasks)
+  }
+
+
 
   const placeholders = () => {
     const placeholderTasks = [
@@ -66,9 +100,11 @@ function App() {
   return (<>
 
     <Header headerTitle="To-Do List" reversed="false" />
-    <Taskbar reversed="false" setTasks={handleTasks} />
+    <Taskbar reversed="false" setTasks={handleTasks} tasks={tasks} compTasks={compTasks} filterModal={filterModal} resetFunction={resetFunction} tagSelectOptions={tagSelectOptions} timeSelectOptions={timeSelectOptions} />
     <TaskContainer tasks={tasks} setTasks={manageTasks} />
     <CompContainer compTasks={compTasks} />
+
+    {filterModalVisible && <FilterModal tagMenu={tagSelectOptions} timeMenu={timeSelectOptions} modVisible={filterModalVisible} modVisibleFunc={setFilterModalVisible} allTasks={allTasks} />}
 
   </>)
 }
@@ -90,7 +126,6 @@ export default App;
 
 /* remaining tasks
 
-  - calls to button component and relevant styling
   - filter by category/time - use filter icon
   - add an edit button
 

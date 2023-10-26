@@ -1,48 +1,16 @@
 import Button from "./Button"
-import FilterModal from "./FilterModal"
 
 import PropTypes from 'prop-types'
 import { useState } from "react"
 import { FaFilter, FaArrowRotateLeft } from 'react-icons/fa6'
 
-function Taskbar( {reversed, setTasks } ) {
+function Taskbar( {reversed, setTasks, tasks, compTasks, filterModal, resetFunction, tagSelectOptions, timeSelectOptions } ) {
 
     const [newTag, setNewTag] = useState("")
     const [newTask, setNewTask] = useState("")
     const [newAssign, setNewAssign] = useState("")
 
-    const [filterModalVisible, setFilterModalVisible] = useState(false)
-
-    const tagSelectOptions = [
-        {value: "", label: "- Category -"},
-        {value: "Home", label: "Home"},
-        {value: "Work", label: "Work"},
-        {value: "School", label: "School"},
-        {value: "Social", label: "Social"},
-        {value: "Family", label: "Family"}
-    ]
-
-    const timeSelectOptions = [
-        {value: "", label: "- Time -"},
-        {value: "Morning", label: "Morning"},
-        {value: "Afternoon", label: "Afternoon"},
-        {value: "Evening", label: "Evening"},
-        {value: "Weekend", label: "Weekend"}
-    ]
-
-    const filterModal = () => {
-        setFilterModalVisible(true) 
-        /* 
-        - build modal with built in overlay and styling
-        - needs dropdowns for cat and time in form, plus submit button
-        - need a reset button also
-        - need to figure out how to filter without destroying state - make copy of tasks and compTasks to be used for following filters or reset
-        */
-    }
-
-    const resetFunction = () => {
-
-    }
+    
 
     const submitForm = (e) => {
 
@@ -69,7 +37,7 @@ function Taskbar( {reversed, setTasks } ) {
 
             <div className="taskbar-content  bg-blue-five p-2 rounded-md flex">
 
-                <Button btnContent={<FaArrowRotateLeft />} btnTask={resetFunction} />
+                <Button btnContent={<FaArrowRotateLeft />} />
                 <Button btnContent={<FaFilter />} btnTask={filterModal} />
 
                 <form className="" onSubmit={submitForm}>
@@ -90,7 +58,7 @@ function Taskbar( {reversed, setTasks } ) {
             </div>
 
         </div>
-        {filterModalVisible && <FilterModal tagMenu={tagSelectOptions} timeMenu={timeSelectOptions} modVisible={filterModalVisible} modVisibleFunc={setFilterModalVisible} />}
+        
     </>)
 }
 
