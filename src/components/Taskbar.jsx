@@ -31,7 +31,6 @@ function Taskbar( {reversed, setTasks } ) {
     ]
 
     const filterModal = () => {
-        console.log("hello")
         setFilterModalVisible(true) 
         /* 
         - build modal with built in overlay and styling
@@ -91,7 +90,7 @@ function Taskbar( {reversed, setTasks } ) {
             </div>
 
         </div>
-        {filterModalVisible && <FilterModal tagMenu={tagSelectOptions} timeMenu={timeSelectOptions} />}
+        {filterModalVisible && <FilterModal tagMenu={tagSelectOptions} timeMenu={timeSelectOptions} modVisible={filterModalVisible} modVisibleFunc={setFilterModalVisible} />}
     </>)
 }
 
