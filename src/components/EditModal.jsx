@@ -3,10 +3,16 @@ import { FaXmark } from 'react-icons/fa6'
 import { useState } from "react"
 
 
-function EditModal( { modVisible, modVisibleFunc, tagSelectOptions, timeSelectOptions, editPlaceholders } ) {
+function EditModal( { modVisible, modVisibleFunc, tagSelectOptions, timeSelectOptions, editPlaceholders, editForm } ) {
 
     const closeModal = () => modVisibleFunc(false)
-    console.log(editPlaceholders)
+
+    const [editData, setEditData] = useState({
+        position: editPlaceholders[0],
+        type: editPlaceholders[1].type,
+        task: editPlaceholders[1].task,
+        assigned: editPlaceholders[1].assigned
+    })
 
     return (<>
 
@@ -20,18 +26,24 @@ function EditModal( { modVisible, modVisibleFunc, tagSelectOptions, timeSelectOp
                         <Button btnTask={closeModal} btnContent={<FaXmark />} /> 
                     </header>
                    
-                    <form className="text-center">
-                        <select name="tagSelect" id="tagSelect">
+                    <form className="text-center" onSubmit={(e) => editForm([e, editData])}>
+
+                        <select name="tagSelect" id="tagSelect" defaultValue={editPlaceholders[1].type} onChange={(e) => setEditData({...editData, type: e.target.value})}>
                             {tagSelectOptions.map((item, index) => (
-                                <option key={index} value={item.value} selected={item.value === editPlaceholders[1].type}>{item.label}</option>
+                                <option key={index} value={item.value}>{item.label}</option>
                             ))}
                         </select>
-                        <input type="text" value={editPlaceholders[1].task} />
-                        <select name="timeSelect" id="timeSelect">
+
+                        <input type="text" defaultValue={editPlaceholders[1].task} onChange={(e) => setEditData({...editData, task: e.target.value})} />
+
+                        <select name="timeSelect" id="timeSelect" defaultValue={editPlaceholders[1].assigned} onChange={(e) => setEditData({...editData, assigned: e.target.value})}>
                             {timeSelectOptions.map((item, index) => (
-                                <option key={index} value={item.value} selected={item.value === editPlaceholders[1].assigned}>{item.label}</option>
+                                <option key={index} value={item.value}>{item.label}</option>
                             ))}
                         </select>
+
+                        <Button type="submit" btnContent="Submit" />
+
                     </form>
 
                 </div>

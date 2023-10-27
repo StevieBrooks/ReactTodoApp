@@ -129,8 +129,14 @@ function App() {
 
   }
 
-  const editForm = () => {
-
+  const editForm = (input) => {
+    input[0].preventDefault()
+    setEditModalVisible(false)
+    const [item1, item2] = input
+    const {position, ...editItems} = item2
+    const updatedTasks = [...tasks]
+    updatedTasks[position] = editItems
+    setTasks(updatedTasks)
   }
 
 

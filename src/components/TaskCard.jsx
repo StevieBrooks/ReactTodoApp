@@ -24,20 +24,17 @@ function TaskCard( { tasks, setTasks, task, index } ) {
 
     const doneClick = () => {
         const taskToMove = [index, tasks[index], "move"]
-        console.log(taskToMove)
         taskToMove[1].completed = true
         setTasks(taskToMove)
     }
 
     const editClick = () => {
         const taskToEdit = [index, tasks[index], "edit"]
-        console.log(taskToEdit)
         setTasks(taskToEdit)
     }
 
     const deleteClick = (e) => {
         const taskToDelete = [index, tasks[index], "delete"]
-        console.log(taskToDelete)
         setTasks(taskToDelete)
     }
 
