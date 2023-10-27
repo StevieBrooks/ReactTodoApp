@@ -163,18 +163,11 @@ export default App;
   https://reactjsexample.com/simple-todo-list-app-with-react/
  */
 
-// figure out how to use useContext instead of prop drilling setTasks
-// look into local/session storage for the app
 
 /*==================BUGS================
 
   - adding tasks - typing ok, but if input remembers previous choices and you choose one a 2nd time, it will add everything except the task
 
-*/
-
-/* remaining tasks
-
-  - filter by category/time - use filter icon
-  - add an edit button
+  - major bug in filtered tasks, delete doesn't work at all, tick doesn't sent to completed until tasks refreshed, edit doesn't take effect until tasks refreshed
 
 */
