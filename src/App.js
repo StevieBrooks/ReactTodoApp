@@ -16,9 +16,11 @@ function App() {
   const [tasks, setTasks] = useState([])
   const [compTasks, setCompTasks] = useState([])
 
+  const [filtTasksActive, setFiltTasksActive] = useState(false)
+  const [filteredTasks, setFilteredTasks] = useState([]);
+  const [filteredCompTasks, setFilteredCompTasks] = useState([]);
 
   const [filterModalVisible, setFilterModalVisible] = useState(false)
-  const [allTasks, setAllTasks] = useState([])
 
   const tagSelectOptions = [
       {value: "", label: "- Category -"},
@@ -39,12 +41,36 @@ function App() {
 
   const filterModal = () => {
       setFilterModalVisible(true) 
-      const tasksBackup = [tasks, compTasks]
-      setAllTasks([tasksBackup])
+      setFiltTasksActive(false)
+      console.log(tasks)
   }
 
+  const filterForm = (input) => {
+    input[0].preventDefault()
+    setFilterModalVisible(false)
+    setFiltTasksActive(true)
+
+    const tagChoice = input[1]
+    const timeChoice = input[2]
+    let filteredTasks = [...tasks]
+    let filteredCompTasks = [...compTasks]
+
+    if(tagChoice !== "") {
+      filteredTasks = filteredTasks.filter((item) => item.type === tagChoice)
+      filteredCompTasks = filteredCompTasks.filter((item) => item.type === tagChoice)
+    }
+    if(timeChoice !== "") {
+      filteredTasks = filteredTasks.filter((item) => item.assigned === timeChoice)
+      filteredCompTasks = filteredCompTasks.filter((item) => item.assigned === tagChoice)
+    }
+
+    setFilteredTasks(filteredTasks)
+    setFilteredCompTasks(filteredCompTasks)
+
+}
+
   const resetFunction = () => {
-      console.log(allTasks)
+    setFiltTasksActive(false)
   }
 
 
@@ -100,11 +126,14 @@ function App() {
   return (<>
 
     <Header headerTitle="To-Do List" reversed="false" />
-    <Taskbar reversed="false" setTasks={handleTasks} tasks={tasks} compTasks={compTasks} filterModal={filterModal} resetFunction={resetFunction} tagSelectOptions={tagSelectOptions} timeSelectOptions={timeSelectOptions} />
-    <TaskContainer tasks={tasks} setTasks={manageTasks} />
-    <CompContainer compTasks={compTasks} />
 
-    {filterModalVisible && <FilterModal tagMenu={tagSelectOptions} timeMenu={timeSelectOptions} modVisible={filterModalVisible} modVisibleFunc={setFilterModalVisible} allTasks={allTasks} />}
+    <Taskbar reversed="false" setTasks={handleTasks} tasks={tasks} compTasks={compTasks} filterModal={filterModal} resetFunction={resetFunction} tagSelectOptions={tagSelectOptions} timeSelectOptions={timeSelectOptions} />
+
+    <TaskContainer tasks={tasks} setTasks={manageTasks} filtTasksActive={filtTasksActive} filteredTasks={filteredTasks} />
+
+    <CompContainer compTasks={compTasks} filtTasksActive={filtTasksActive} filteredCompTasks={filteredCompTasks} />
+
+    {filterModalVisible && <FilterModal tagMenu={tagSelectOptions} timeMenu={timeSelectOptions} modVisible={filterModalVisible} modVisibleFunc={setFilterModalVisible} filterForm={filterForm} />}
 
   </>)
 }

@@ -1,19 +1,22 @@
 import TaskCard from "./TaskCard"
 
-function CompContainer( { compTasks } ) {
-
-    console.log(compTasks)
+function CompContainer( { compTasks, filtTasksActive, filteredCompTasks } ) {
 
     return (<>
 
         <div className="w-4/5 max-w-5xl mx-auto my-10">
             <h1 className="text-center text-3xl">Completed Tasks</h1>
             <ul>
-                {compTasks.map((item, index) => (
+                {filtTasksActive ? filteredCompTasks.map((item, index) => (
+                    <div key={index}>
+                        <TaskCard task={item} index={index} />
+                    </div>
+                )) : compTasks.map((item, index) => (
                     <div key={index}>
                         <TaskCard task={item} index={index} />
                     </div>
                 ))}
+                {}
             </ul>
         </div> 
         

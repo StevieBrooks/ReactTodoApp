@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { useState } from "react"
 import { FaFilter, FaArrowRotateLeft } from 'react-icons/fa6'
 
-function Taskbar( {reversed, setTasks, tasks, compTasks, filterModal, resetFunction, tagSelectOptions, timeSelectOptions } ) {
+function Taskbar( {reversed, setTasks, filterModal, resetFunction, tagSelectOptions, timeSelectOptions } ) {
 
     const [newTag, setNewTag] = useState("")
     const [newTask, setNewTask] = useState("")
@@ -37,7 +37,7 @@ function Taskbar( {reversed, setTasks, tasks, compTasks, filterModal, resetFunct
 
             <div className="taskbar-content  bg-blue-five p-2 rounded-md flex">
 
-                <Button btnContent={<FaArrowRotateLeft />} />
+                <Button btnContent={<FaArrowRotateLeft />} btnTask={resetFunction} />
                 <Button btnContent={<FaFilter />} btnTask={filterModal} />
 
                 <form className="" onSubmit={submitForm}>
