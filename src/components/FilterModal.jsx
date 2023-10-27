@@ -10,8 +10,6 @@ function FilterModal( { tagMenu, timeMenu, modVisible, modVisibleFunc, filterTas
 
     const closeModal = () => modVisibleFunc(false)
 
-   
-
     return (<>
 
         {modVisible && <div className="filter-modal-overlay bg-blue-five/[.8] w-screen h-screen fixed top-0 flex justify-center" onClick={(e) => e.target.className.includes("filter-modal-overlay") && modVisibleFunc(false)}>

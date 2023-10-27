@@ -1,4 +1,4 @@
-import { FaCheck, FaTrash } from "react-icons/fa6"
+import { FaCheck, FaPen, FaTrash } from "react-icons/fa6"
 import Button from "./Button";
 
 function TaskCard( { tasks, setTasks, task, index } ) {
@@ -29,6 +29,12 @@ function TaskCard( { tasks, setTasks, task, index } ) {
         setTasks(taskToMove)
     }
 
+    const editClick = () => {
+        const taskToEdit = [index, tasks[index], "edit"]
+        console.log(taskToEdit)
+        setTasks(taskToEdit)
+    }
+
     const deleteClick = (e) => {
         const taskToDelete = [index, tasks[index], "delete"]
         console.log(taskToDelete)
@@ -42,6 +48,7 @@ function TaskCard( { tasks, setTasks, task, index } ) {
         <p className="basis-2/12 text-start">{task.assigned}</p>
         <div className={task.completed ? "hidden" : "basis-2/12 text-end"}>
             <Button id="doneButton" btnTask={doneClick} btnContent={<FaCheck />} />
+            <Button id="doneButton" btnTask={editClick} btnContent={<FaPen />} />
             <Button id="delButton" btnTask={deleteClick} btnContent={<FaTrash />} />
         </div>
 

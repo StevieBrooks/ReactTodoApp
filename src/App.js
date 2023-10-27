@@ -4,6 +4,7 @@ import Taskbar from "./components/Taskbar"
 import TaskContainer from './components/TaskContainer';
 import CompContainer from './components/CompContainer';
 import FilterModal from "./components/FilterModal"
+import EditModal from "./components/EditModal"
 
 
 /*===========DEPENDENCIES============*/
@@ -21,6 +22,9 @@ function App() {
   const [filteredCompTasks, setFilteredCompTasks] = useState([]);
 
   const [filterModalVisible, setFilterModalVisible] = useState(false)
+  const [editModalVisible, setEditModalVisible] = useState(false)
+
+  const [editPlaceholders, setEditPlaceholders] = useState([])
 
   const tagSelectOptions = [
       {value: "", label: "- Category -"},
@@ -118,7 +122,14 @@ function App() {
       updatedTasks = updatedTasks.filter((task, index) => index !== item[0])
       setTasks(updatedTasks)
       // should have modal to check if user wants to delete
+    } else {
+      setEditModalVisible(true)
+      setEditPlaceholders(item)
     }
+
+  }
+
+  const editForm = () => {
 
   }
 
@@ -134,6 +145,8 @@ function App() {
     <CompContainer compTasks={compTasks} filtTasksActive={filtTasksActive} filteredCompTasks={filteredCompTasks} />
 
     {filterModalVisible && <FilterModal tagMenu={tagSelectOptions} timeMenu={timeSelectOptions} modVisible={filterModalVisible} modVisibleFunc={setFilterModalVisible} filterForm={filterForm} />}
+
+    {editModalVisible && <EditModal modVisible={editModalVisible} modVisibleFunc={setEditModalVisible} editForm={editForm} tagSelectOptions={tagSelectOptions} timeSelectOptions={timeSelectOptions} editPlaceholders={editPlaceholders} />}
 
   </>)
 }
