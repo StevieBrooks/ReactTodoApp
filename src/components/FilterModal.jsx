@@ -12,30 +12,30 @@ function FilterModal( { tagMenu, timeMenu, modVisible, modVisibleFunc, filterTas
 
     return (<>
 
-        {modVisible && <div className="filter-modal-overlay bg-blue-five/[.8] w-screen h-screen fixed top-0 flex justify-center" onClick={(e) => e.target.className.includes("filter-modal-overlay") && modVisibleFunc(false)}>
+        {modVisible && <div className="filter-modal-overlay bg-blue-three/[.8] w-screen h-screen fixed top-0 flex justify-center" onClick={(e) => e.target.className.includes("filter-modal-overlay") && modVisibleFunc(false)}>
 
             <div className="filter-modal mt-16 bg-blue-one h-fit w-4/5 max-w-md rounded">
-                <div className="filter-modal-content text-blue-five">
+                <div className="edit-modal-content bg-blue-five border border-blue-two rounded pb-3">
 
-                    <header className="p-2 flex justify-between">
-                        <h2>Filter Tasks</h2>
-                        <Button btnTask={closeModal} btnContent={<FaXmark />} /> 
+                    <header className="p-3 flex justify-between items-center bg-blue-five rounded-t mb-5 border-b border-blue-two">
+                        <h2 className="text-2xl">Filter Tasks</h2>
+                        <Button className="bg-blue-two p-2 rounded" btnTask={closeModal} btnContent={<FaXmark />} /> 
                     </header>
-                    <form className="text-center" onSubmit={(e) => filterForm([e, tagChoice, timeChoice, ])}>
+                    <form className="text-center flex flex-col" onSubmit={(e) => filterForm([e, tagChoice, timeChoice, ])}>
 
-                        <select name="tagSelect" id="tagSelect" onChange={(e) => setTagChoice(e.target.value)}>
+                        <select name="tagSelect" id="tagSelect" className="m-3 p-1 bg-blue-four rounded border border-blue-two" onChange={(e) => setTagChoice(e.target.value)}>
                             {tagMenu.map((item, index) => (
                                 <option key={index} value={item.value}>{item.label}</option>
                             ))}
                         </select>
 
-                        <select name="timeSelect" id="timeSelect" onChange={(e) => setTimeChoice(e.target.value)}>
+                        <select name="timeSelect" id="timeSelect" className="m-3 p-1 bg-blue-four rounded border border-blue-two" onChange={(e) => setTimeChoice(e.target.value)}>
                             {timeMenu.map((item, index) => (
                                 <option key={index} value={item.value}>{item.label}</option>
                             ))}
                         </select>
 
-                        <Button type="submit" btnContent="Submit" />
+                        <Button className="bg-blue-two w-3/6 m-auto py-1 rounded my-5" type="submit" btnContent="Submit" />
 
                     </form>
 

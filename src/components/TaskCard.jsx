@@ -44,9 +44,9 @@ function TaskCard( { tasks, setTasks, task, index } ) {
         <li className="basis-6/12 text-start">{task.task}</li>
         <p className="basis-2/12 text-start">{task.assigned}</p>
         <div className={task.completed ? "hidden" : "basis-2/12 text-end"}>
-            <Button id="doneButton" btnTask={doneClick} btnContent={<FaCheck />} />
-            <Button id="doneButton" btnTask={editClick} btnContent={<FaPen />} />
-            <Button id="delButton" btnTask={deleteClick} btnContent={<FaTrash />} />
+            <Button className="bg-blue-two p-2 mx-1 rounded" id="doneButton" btnTask={doneClick} btnContent={<FaCheck />} />
+            <Button className="bg-blue-two p-2 mx-1 rounded" id="doneButton" btnTask={editClick} btnContent={<FaPen />} />
+            <Button className="bg-blue-two p-2 mx-1 rounded" id="delButton" btnTask={deleteClick} btnContent={<FaTrash />} />
         </div>
 
     </div>)

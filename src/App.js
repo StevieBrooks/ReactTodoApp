@@ -27,7 +27,7 @@ function App() {
   const [editPlaceholders, setEditPlaceholders] = useState([])
 
   const tagSelectOptions = [
-      {value: "", label: "- Category -"},
+      {value: "", label: "Category:"},
       {value: "Home", label: "Home"},
       {value: "Work", label: "Work"},
       {value: "School", label: "School"},
@@ -36,7 +36,7 @@ function App() {
   ]
 
   const timeSelectOptions = [
-      {value: "", label: "- Time -"},
+      {value: "", label: "Time:"},
       {value: "Morning", label: "Morning"},
       {value: "Afternoon", label: "Afternoon"},
       {value: "Evening", label: "Evening"},

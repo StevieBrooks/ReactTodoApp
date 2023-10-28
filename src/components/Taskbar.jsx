@@ -35,12 +35,14 @@ function Taskbar( {reversed, setTasks, filterModal, resetFunction, tagSelectOpti
     return (<>
         <div className="taskbar-inputs flex justify-center my-5">
 
-            <div className="taskbar-content  bg-blue-five p-2 rounded-md flex">
+            <div className="taskbar-content  bg-blue-five p-2 rounded-md flex items-center border border-blue-two">
 
-                <Button btnContent={<FaArrowRotateLeft />} btnTask={resetFunction} />
-                <Button btnContent={<FaFilter />} btnTask={filterModal} />
+                <div className="filt-reset-buttons">
+                    <Button className="bg-blue-two p-2  mx-1 rounded" btnContent={<FaArrowRotateLeft />} btnTask={resetFunction} />
+                    <Button className="bg-blue-two p-2  mx-1 rounded" btnContent={<FaFilter />} btnTask={filterModal} />
+                </div>
 
-                <form className="" onSubmit={submitForm}>
+                <form id="taskbarForm" onSubmit={submitForm}>
                     <select name="tagSelect" id="tagSelect" className="text-blue-five p-1 m-1" onChange={(e) => setNewTag(e.target.value)} required>
                         {tagSelectOptions.map((option, index) => (
                             <option key={index} value={option.value}>{option.label}</option>
@@ -52,8 +54,8 @@ function Taskbar( {reversed, setTasks, filterModal, resetFunction, tagSelectOpti
                             <option key={index} value={option.value}>{option.label}</option>
                         ))}
                     </select>
-                    <Button type="submit" btnContent="Submit" />
                 </form>
+                <Button form="taskbarForm" className="bg-blue-two px-2 py-1  mx-1 rounded" type="submit" btnContent="Submit" />
 
             </div>
 
