@@ -152,12 +152,23 @@ function App() {
     setEditModalVisible(false)
     const [item1, item2] = input
     const {position, ...editItems} = item2
+
+    const originalTask = filteredTasks[position];
+
     if(filtTasksActive) {
       const updatedFilteredTasks = [...filteredTasks]
       updatedFilteredTasks[position] = editItems
       setFilteredTasks(updatedFilteredTasks)
+
       const updatedTasks = [...tasks]
-      updatedTasks[position] = editItems
+      const taskToChange = updatedTasks.indexOf(originalTask)
+      updatedTasks[taskToChange] = editItems
+
+      console.log(tasks)
+      console.log(updatedTasks)
+      console.log(originalTask)
+      console.log(editItems)
+
       setTasks(updatedTasks)
     } else {
       const updatedTasks = [...tasks]
