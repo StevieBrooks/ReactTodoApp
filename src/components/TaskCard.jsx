@@ -1,7 +1,7 @@
 import { FaCheck, FaPen, FaTrash } from "react-icons/fa6"
 import Button from "./Button";
 
-function TaskCard( { tasks, setTasks, task, index } ) {
+function TaskCard( { tasks, setTasks, task, index, filtTasksActive, filteredTasks, setFilteredTasks } ) {
 
     let condTypeStyling;
     switch (task.type) {
@@ -23,19 +23,37 @@ function TaskCard( { tasks, setTasks, task, index } ) {
 
 
     const doneClick = () => {
-        const taskToMove = [index, tasks[index], "move"]
-        taskToMove[1].completed = true
-        setTasks(taskToMove)
+        if(filtTasksActive) {
+            const taskToMove = [index, filteredTasks[index], "move"]
+            taskToMove[1].completed = true
+            setFilteredTasks(taskToMove)
+        } else {
+            const taskToMove = [index, tasks[index], "move"]
+            taskToMove[1].completed = true
+            setTasks(taskToMove)
+        }
     }
 
     const editClick = () => {
-        const taskToEdit = [index, tasks[index], "edit"]
-        setTasks(taskToEdit)
+        if(filtTasksActive) {
+            const taskToEdit = [index, filteredTasks[index], "edit"]
+            setFilteredTasks(taskToEdit)
+        } else {
+            const taskToEdit = [index, tasks[index], "edit"]
+            setTasks(taskToEdit)
+        }
     }
 
     const deleteClick = (e) => {
-        const taskToDelete = [index, tasks[index], "delete"]
-        setTasks(taskToDelete)
+        if(filtTasksActive) {
+            const taskToDelete = [index, filteredTasks[index], "delete"]
+            console.log(taskToDelete)
+            setFilteredTasks(taskToDelete)
+        } else {
+            const taskToDelete = [index, tasks[index], "delete"]
+            console.log(taskToDelete)
+            setTasks(taskToDelete)
+        }
     }
 
     return (<div className="bg-blue-four py-3 flex justify-between items-center border-b border-solid">
@@ -54,3 +72,4 @@ function TaskCard( { tasks, setTasks, task, index } ) {
 
 export default TaskCard
 
+// try using key in the div and getting index that way

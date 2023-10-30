@@ -46,7 +46,6 @@ function App() {
   const filterModal = () => {
       setFilterModalVisible(true) 
       setFiltTasksActive(false)
-      console.log(tasks)
   }
 
   const filterForm = (input) => {
@@ -103,14 +102,23 @@ function App() {
 
   const handleTasks = (item) => {
     setTasks([item, ...tasks])
-    console.log(item)
   }
 
   const manageTasks = (item) => {
+    
 
     if(item[2] == "move") {
 
-      console.log(item)
+      if(filtTasksActive) {
+        let updatedFilteredTasks = [...filteredTasks]
+        updatedFilteredTasks = updatedFilteredTasks.filter((task, index) => index !== item[0])
+        setFilteredTasks(updatedFilteredTasks)
+        let updatedTasks = [...tasks]
+        updatedTasks = updatedTasks.filter((task, index) => index !== item[1])
+        setTasks(updatedTasks)
+        setCompTasks([item[1], ...compTasks])
+      }
+
       let updatedTasks = [...tasks]
       updatedTasks = updatedTasks.filter((task, index) => index !== item[0])
       setTasks(updatedTasks)
@@ -118,10 +126,20 @@ function App() {
 
     } else if (item[2] == "delete") {
       
-      let updatedTasks = [...tasks]
-      updatedTasks = updatedTasks.filter((task, index) => index !== item[0])
-      setTasks(updatedTasks)
-      // should have modal to check if user wants to delete
+      if(filtTasksActive) {
+        
+        let updatedFilteredTasks = [...filteredTasks]
+        updatedFilteredTasks = updatedFilteredTasks.filter((task, index) => index !== item[0])
+        setFilteredTasks(updatedFilteredTasks)
+        let updatedTasks = [...tasks]
+        updatedTasks = updatedTasks.filter((task) => task !== item[1])
+        setTasks(updatedTasks)
+      } else {
+        let updatedTasks = [...tasks]
+        updatedTasks = updatedTasks.filter((task, index) => index !== item[0])
+        setTasks(updatedTasks)
+      }
+      
     } else {
       setEditModalVisible(true)
       setEditPlaceholders(item)
@@ -134,9 +152,19 @@ function App() {
     setEditModalVisible(false)
     const [item1, item2] = input
     const {position, ...editItems} = item2
-    const updatedTasks = [...tasks]
-    updatedTasks[position] = editItems
-    setTasks(updatedTasks)
+    if(filtTasksActive) {
+      const updatedFilteredTasks = [...filteredTasks]
+      updatedFilteredTasks[position] = editItems
+      setFilteredTasks(updatedFilteredTasks)
+      const updatedTasks = [...tasks]
+      updatedTasks[position] = editItems
+      setTasks(updatedTasks)
+    } else {
+      const updatedTasks = [...tasks]
+      updatedTasks[position] = editItems
+      setTasks(updatedTasks)
+    }
+    
   }
 
 
@@ -146,7 +174,7 @@ function App() {
 
     <Taskbar reversed="false" setTasks={handleTasks} tasks={tasks} compTasks={compTasks} filterModal={filterModal} resetFunction={resetFunction} tagSelectOptions={tagSelectOptions} timeSelectOptions={timeSelectOptions} />
 
-    <TaskContainer tasks={tasks} setTasks={manageTasks} filtTasksActive={filtTasksActive} filteredTasks={filteredTasks} />
+    <TaskContainer tasks={tasks} setTasks={manageTasks} filtTasksActive={filtTasksActive} filteredTasks={filteredTasks} setFilteredTasks={manageTasks} />
 
     <CompContainer compTasks={compTasks} filtTasksActive={filtTasksActive} filteredCompTasks={filteredCompTasks} />
 
@@ -168,6 +196,6 @@ export default App;
 
   - adding tasks - typing ok, but if input remembers previous choices and you choose one a 2nd time, it will add everything except the task
 
-  - major bug in filtered tasks, delete doesn't work at all, tick doesn't sent to completed until tasks refreshed, edit doesn't take effect until tasks refreshed
+  - major bug in filtered tasks, choosing index 1 or above to modify (done or edit) gives unexpected results
 
 */

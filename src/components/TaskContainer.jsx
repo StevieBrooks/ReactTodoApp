@@ -1,6 +1,6 @@
 import TaskCard from "./TaskCard"
 
-function TaskContainer( { tasks, setTasks, filtTasksActive, filteredTasks } ) {
+function TaskContainer( { tasks, setTasks, filtTasksActive, filteredTasks, setFilteredTasks } ) {
 
     
 
@@ -11,7 +11,7 @@ function TaskContainer( { tasks, setTasks, filtTasksActive, filteredTasks } ) {
 
                 {filtTasksActive ? filteredTasks.map((task, index) => (
                     <div key={index}>
-                        <TaskCard tasks={tasks} setTasks={setTasks} task={task} index={index} />
+                        <TaskCard tasks={tasks} setTasks={setTasks} task={task} index={index} filtTasksActive={filtTasksActive} filteredTasks={filteredTasks} setFilteredTasks={setFilteredTasks} />
                     </div>          
                 )) : tasks.map((task, index) => (
                     <div key={index}>
