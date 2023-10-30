@@ -122,7 +122,9 @@ function App() {
         updatedTasks = updatedTasks.filter((task, index) => index !== item[0])
         setTasks(updatedTasks)
         setCompTasks([item[1], ...compTasks])
-      }   
+      } 
+      setFiltTasksActive(false)
+        
 
     } else if (item[2] == "delete") {
       
@@ -163,13 +165,8 @@ function App() {
       const updatedTasks = [...tasks]
       const taskToChange = updatedTasks.indexOf(originalTask)
       updatedTasks[taskToChange] = editItems
-
-      console.log(tasks)
-      console.log(updatedTasks)
-      console.log(originalTask)
-      console.log(editItems)
-
       setTasks(updatedTasks)
+      
     } else {
       const updatedTasks = [...tasks]
       updatedTasks[position] = editItems
@@ -198,15 +195,4 @@ function App() {
 
 export default App;
 
-/* copy this one...
-  https://reactjsexample.com/simple-todo-list-app-with-react/
- */
 
-
-/*==================BUGS================
-
-  - adding tasks - typing ok, but if input remembers previous choices and you choose one a 2nd time, it will add everything except the task
-
-  - major bug in filtered tasks, choosing index 1 or above to modify (done or edit) gives unexpected results
-
-*/
