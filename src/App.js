@@ -49,6 +49,7 @@ function App() {
   }
 
   const filterForm = (input) => {
+    
     input[0].preventDefault()
     setFilterModalVisible(false)
     setFiltTasksActive(true)
@@ -106,7 +107,6 @@ function App() {
 
   const manageTasks = (item) => {
     
-
     if(item[2] == "move") {
 
       if(filtTasksActive) {
@@ -114,15 +114,15 @@ function App() {
         updatedFilteredTasks = updatedFilteredTasks.filter((task, index) => index !== item[0])
         setFilteredTasks(updatedFilteredTasks)
         let updatedTasks = [...tasks]
-        updatedTasks = updatedTasks.filter((task, index) => index !== item[1])
+        updatedTasks = updatedTasks.filter((task) => task !== item[1])
         setTasks(updatedTasks)
         setCompTasks([item[1], ...compTasks])
-      }
-
-      let updatedTasks = [...tasks]
-      updatedTasks = updatedTasks.filter((task, index) => index !== item[0])
-      setTasks(updatedTasks)
-      setCompTasks([item[1], ...compTasks])
+      } else {
+        let updatedTasks = [...tasks]
+        updatedTasks = updatedTasks.filter((task, index) => index !== item[0])
+        setTasks(updatedTasks)
+        setCompTasks([item[1], ...compTasks])
+      }   
 
     } else if (item[2] == "delete") {
       
@@ -172,7 +172,7 @@ function App() {
 
     <Header headerTitle="To-Do List" reversed="false" />
 
-    <Taskbar reversed="false" setTasks={handleTasks} tasks={tasks} compTasks={compTasks} filterModal={filterModal} resetFunction={resetFunction} tagSelectOptions={tagSelectOptions} timeSelectOptions={timeSelectOptions} />
+    <Taskbar setTasks={handleTasks} tasks={tasks} compTasks={compTasks} filterModal={filterModal} resetFunction={resetFunction} tagSelectOptions={tagSelectOptions} timeSelectOptions={timeSelectOptions} />
 
     <TaskContainer tasks={tasks} setTasks={manageTasks} filtTasksActive={filtTasksActive} filteredTasks={filteredTasks} setFilteredTasks={manageTasks} />
 

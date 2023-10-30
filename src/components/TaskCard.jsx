@@ -44,7 +44,7 @@ function TaskCard( { tasks, setTasks, task, index, filtTasksActive, filteredTask
         }
     }
 
-    const deleteClick = (e) => {
+    const deleteClick = () => {
         if(filtTasksActive) {
             const taskToDelete = [index, filteredTasks[index], "delete"]
             console.log(taskToDelete)

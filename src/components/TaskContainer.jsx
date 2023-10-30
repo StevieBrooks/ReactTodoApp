@@ -29,4 +29,3 @@ function TaskContainer( { tasks, setTasks, filtTasksActive, filteredTasks, setFi
 
 export default TaskContainer
 
-// Build edit task button and functionaltiy if feeling adventurous
