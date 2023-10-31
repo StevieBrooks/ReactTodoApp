@@ -186,7 +186,7 @@ function App() {
 
     <Header headerTitle="To-Do List" addModal={addModal} filterModal={filterModal} resetFunction={resetFunction} />
 
-    <Taskbar setTasks={handleTasks} tasks={tasks} compTasks={compTasks} filterModal={filterModal} resetFunction={resetFunction} tagSelectOptions={tagSelectOptions} timeSelectOptions={timeSelectOptions} />
+    <Taskbar setTasks={handleTasks} tasks={tasks} compTasks={compTasks} filterModal={filterModal} filterOn={filtTasksActive} resetFunction={resetFunction} tagSelectOptions={tagSelectOptions} timeSelectOptions={timeSelectOptions} />
 
     <TaskContainer tasks={tasks} setTasks={manageTasks} filtTasksActive={filtTasksActive} filteredTasks={filteredTasks} setFilteredTasks={manageTasks} />
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { useState } from "react"
 import { FaFilter, FaArrowRotateLeft } from 'react-icons/fa6'
 
-function Taskbar( { setTasks, filterModal, resetFunction, tagSelectOptions, timeSelectOptions } ) {
+function Taskbar( { setTasks, filterModal, filterOn, resetFunction, tagSelectOptions, timeSelectOptions } ) {
 
     const [newTag, setNewTag] = useState("")
     const [newTask, setNewTask] = useState("")
@@ -38,8 +38,8 @@ function Taskbar( { setTasks, filterModal, resetFunction, tagSelectOptions, time
             <div className="taskbar-content  bg-blue-five p-2 rounded-md flex flex-col sm:flex-row items-center border-2 border-blue-two">
 
                 <div className="filt-reset-buttons">
-                    <Button className="bg-blue-two p-2 mx-1 rounded hover:bg-blue-three" btnContent={<FaArrowRotateLeft />} btnTask={resetFunction} />
-                    <Button className="bg-blue-two p-2 mx-1 rounded hover:bg-blue-three" btnContent={<FaFilter />} btnTask={filterModal} />
+                    <Button title="Click to reset" className="bg-blue-two p-2 mx-1 rounded hover:bg-blue-three" btnContent={<FaArrowRotateLeft />} btnTask={resetFunction} />
+                    <Button className={`${filterOn ? "bg-blue-one" : "bg-blue-two"}  p-2 mx-1 rounded hover:bg-blue-three`} btnContent={<FaFilter />} btnTask={filterModal} />
                 </div>
 
                 <form id="taskbarForm" onSubmit={submitForm}>
