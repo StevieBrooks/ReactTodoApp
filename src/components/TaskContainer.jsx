@@ -6,7 +6,7 @@ function TaskContainer( { tasks, setTasks, filtTasksActive, filteredTasks, setFi
 
     return (<>
     
-        <div className="w-4/5 max-w-5xl mx-auto"> 
+        <div className="w-11/12 sm:w-4/5 flex flex-col max-w-5xl mx-auto"> 
             <ul>
 
                 {filtTasksActive ? filteredTasks.map((task, index) => (
