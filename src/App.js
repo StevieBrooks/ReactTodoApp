@@ -71,7 +71,7 @@ function App() {
     }
     if(timeChoice !== "") {
       filteredTasks = filteredTasks.filter((item) => item.assigned === timeChoice)
-      filteredCompTasks = filteredCompTasks.filter((item) => item.assigned === tagChoice)
+      filteredCompTasks = filteredCompTasks.filter((item) => item.assigned === timeChoice)
     }
 
     setFilteredTasks(filteredTasks)
