@@ -3,7 +3,7 @@ import { FaXmark } from 'react-icons/fa6'
 import { useState } from "react"
 
 
-function FilterModal( { tagMenu, timeMenu, modVisible, modVisibleFunc, filterTasks, filterForm } ) {
+function FilterModal( { tagMenu, timeMenu, modVisible, modVisibleFunc, filterForm } ) {
 
     const [tagChoice, setTagChoice] = useState("")
     const [timeChoice, setTimeChoice] = useState("")

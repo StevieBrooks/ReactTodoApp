@@ -59,8 +59,8 @@ function TaskCard( { tasks, setTasks, task, index, filtTasksActive, filteredTask
     return (<div className="bg-blue-four py-3 flex justify-between items-center border-b border-solid">
     
         <p className="basis-1/12 text-center rounded-2xl p-1" style={condTypeStyling}>{task.type}</p>
-        <li className="basis-6/12 text-start">{task.task}</li>
-        <p className="basis-2/12 text-start">{task.assigned}</p>
+        <li className={`basis-6/12 text-start ${task.completed && "line-through"}`}>{task.task}</li>
+        <p className={`basis-2/12 text-start ${task.completed && "line-through"}`}>{task.assigned}</p>
         <div className={task.completed ? "hidden" : "basis-2/12 text-end"}>
             <Button className="bg-blue-two p-2 mx-1 rounded" id="doneButton" btnTask={doneClick} btnContent={<FaCheck />} />
             <Button className="bg-blue-two p-2 mx-1 rounded" id="doneButton" btnTask={editClick} btnContent={<FaPen />} />

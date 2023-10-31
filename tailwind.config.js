@@ -13,6 +13,10 @@ module.exports = {
         "blue-five": "#13293D"
       }
     },
+    screens: {
+      "phone":  "350px",
+      "sm": "640px" 
+    }
   },
   plugins: [],
 }

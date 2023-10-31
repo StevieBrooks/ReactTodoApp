@@ -5,6 +5,7 @@ import TaskContainer from './components/TaskContainer';
 import CompContainer from './components/CompContainer';
 import FilterModal from "./components/FilterModal"
 import EditModal from "./components/EditModal"
+import AddModal from "./components/AddModal"
 
 
 /*===========DEPENDENCIES============*/
@@ -21,6 +22,7 @@ function App() {
   const [filteredTasks, setFilteredTasks] = useState([]);
   const [filteredCompTasks, setFilteredCompTasks] = useState([]);
 
+  const [addModalVisible, setAddModalVisible] = useState(false)
   const [filterModalVisible, setFilterModalVisible] = useState(false)
   const [editModalVisible, setEditModalVisible] = useState(false)
 
@@ -42,6 +44,10 @@ function App() {
       {value: "Evening", label: "Evening"},
       {value: "Weekend", label: "Weekend"}
   ]
+
+  const addModal = () => {
+    setAddModalVisible(true)
+  }
 
   const filterModal = () => {
       setFilterModalVisible(true) 
@@ -178,13 +184,15 @@ function App() {
 
   return (<>
 
-    <Header headerTitle="To-Do List" reversed="false" />
+    <Header headerTitle="To-Do List" addModal={addModal} filterModal={filterModal} resetFunction={resetFunction} />
 
     <Taskbar setTasks={handleTasks} tasks={tasks} compTasks={compTasks} filterModal={filterModal} resetFunction={resetFunction} tagSelectOptions={tagSelectOptions} timeSelectOptions={timeSelectOptions} />
 
     <TaskContainer tasks={tasks} setTasks={manageTasks} filtTasksActive={filtTasksActive} filteredTasks={filteredTasks} setFilteredTasks={manageTasks} />
 
     <CompContainer compTasks={compTasks} filtTasksActive={filtTasksActive} filteredCompTasks={filteredCompTasks} />
+
+    {addModalVisible && <AddModal modVisible={addModalVisible} modVisibleFunc={setAddModalVisible} tagSelectOptions={tagSelectOptions} timeSelectOptions={timeSelectOptions} setTasks={handleTasks} />}
 
     {filterModalVisible && <FilterModal tagMenu={tagSelectOptions} timeMenu={timeSelectOptions} modVisible={filterModalVisible} modVisibleFunc={setFilterModalVisible} filterForm={filterForm} />}
 

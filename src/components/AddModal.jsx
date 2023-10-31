@@ -1,16 +1,13 @@
 import Button from "./Button"
-
-import PropTypes from 'prop-types'
+import { FaXmark } from 'react-icons/fa6'
 import { useState } from "react"
-import { FaFilter, FaArrowRotateLeft } from 'react-icons/fa6'
 
-function Taskbar( { setTasks, filterModal, resetFunction, tagSelectOptions, timeSelectOptions } ) {
+
+function AddModal( { modVisible, modVisibleFunc, setTasks, tagSelectOptions, timeSelectOptions } ) {
 
     const [newTag, setNewTag] = useState("")
     const [newTask, setNewTask] = useState("")
     const [newAssign, setNewAssign] = useState("")
-
-    
 
     const submitForm = (e) => {
 
@@ -28,21 +25,26 @@ function Taskbar( { setTasks, filterModal, resetFunction, tagSelectOptions, time
         setNewTask("")
         setNewAssign("")
         e.target.reset()
+        closeModal()
         
     }
 
 
+    const closeModal = () => modVisibleFunc(false)
+
     return (<>
-        <div className="taskbar-inputs hidden sm:flex justify-center my-5">
 
-            <div className="taskbar-content  bg-blue-five p-2 rounded-md flex flex-col sm:flex-row items-center border border-blue-two">
+        {modVisible && <div className="add-modal-overlay bg-blue-three/[.8] w-screen h-screen fixed top-0 flex justify-center sm:hidden" onClick={(e) => e.target.className.includes("add-modal-overlay") && modVisibleFunc(false)}>
 
-                <div className="filt-reset-buttons">
-                    <Button className="bg-blue-two p-2  mx-1 rounded" btnContent={<FaArrowRotateLeft />} btnTask={resetFunction} />
-                    <Button className="bg-blue-two p-2  mx-1 rounded" btnContent={<FaFilter />} btnTask={filterModal} />
-                </div>
+            <div className="filter-modal mt-16 bg-blue-one h-fit w-4/5 max-w-md rounded">
+                <div className="edit-modal-content bg-blue-five border border-blue-two rounded pb-3">
 
-                <form id="taskbarForm" onSubmit={submitForm}>
+                    <header className="p-3 flex justify-between items-center bg-blue-five rounded-t mb-5 border-b border-blue-two">
+                        <h2 className="text-2xl">Add Task</h2>
+                        <Button type="button" className="bg-blue-two p-2 rounded" btnTask={closeModal} btnContent={<FaXmark />} /> 
+                    </header>
+                    
+                    <form id="headerForm" className="text-center flex flex-col" onSubmit={submitForm}>
                     <select name="tagSelect" id="tagSelect" className="m-2 p-1 bg-blue-four rounded border border-blue-two" onChange={(e) => setNewTag(e.target.value)} required>
                         {tagSelectOptions.map((option, index) => (
                             <option key={index} value={option.value}>{option.label}</option>
@@ -56,19 +58,17 @@ function Taskbar( { setTasks, filterModal, resetFunction, tagSelectOptions, time
                     </select>
 
                     <input type="text" id="todoInput" className="m-2 p-1 bg-blue-four rounded border border-blue-two"placeholder="Add task..." onChange={(e) => setNewTask(e.target.value)} required/>
-                </form>
-                <Button form="taskbarForm" className="bg-blue-two px-2 py-1  mx-1 rounded" type="submit" btnContent="Submit" />
 
+                    <Button form="headerForm" className="bg-blue-two w-3/6 m-auto py-1 rounded my-5" type="submit" btnContent="Submit" />
+                    
+                </form>
+
+                </div>
             </div>
 
-        </div>
+        </div>}
         
     </>)
 }
 
-Taskbar.propTypes = {
-    reversed: PropTypes.string,
-    setTasks: PropTypes.func.isRequired
-}
-
-export default Taskbar
+export default AddModal
