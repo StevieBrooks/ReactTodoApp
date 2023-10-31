@@ -34,14 +34,14 @@ function AddModal( { modVisible, modVisibleFunc, setTasks, tagSelectOptions, tim
 
     return (<>
 
-        {modVisible && <div className="add-modal-overlay bg-blue-three/[.8] w-screen h-screen fixed top-0 flex justify-center sm:hidden" onClick={(e) => e.target.className.includes("add-modal-overlay") && modVisibleFunc(false)}>
+        {modVisible && <div className="add-modal-overlay bg-blue-five/[.8] w-screen h-screen fixed top-0 flex justify-center sm:hidden" onClick={(e) => e.target.className.includes("add-modal-overlay") && modVisibleFunc(false)}>
 
             <div className="filter-modal mt-16 bg-blue-one h-fit w-4/5 max-w-md rounded">
-                <div className="edit-modal-content bg-blue-five border border-blue-two rounded pb-3">
+                <div className="edit-modal-content bg-blue-five border-2 border-blue-two rounded pb-3">
 
                     <header className="p-3 flex justify-between items-center bg-blue-five rounded-t mb-5 border-b border-blue-two">
                         <h2 className="text-2xl">Add Task</h2>
-                        <Button type="button" className="bg-blue-two p-2 rounded" btnTask={closeModal} btnContent={<FaXmark />} /> 
+                        <Button type="button" className="bg-blue-two p-2 rounded hover:bg-blue-three" btnTask={closeModal} btnContent={<FaXmark />} /> 
                     </header>
                     
                     <form id="headerForm" className="text-center flex flex-col" onSubmit={submitForm}>
@@ -59,7 +59,7 @@ function AddModal( { modVisible, modVisibleFunc, setTasks, tagSelectOptions, tim
 
                     <input type="text" id="todoInput" className="m-2 p-1 bg-blue-four rounded border border-blue-two"placeholder="Add task..." onChange={(e) => setNewTask(e.target.value)} required/>
 
-                    <Button form="headerForm" className="bg-blue-two w-3/6 m-auto py-1 rounded my-5" type="submit" btnContent="Submit" />
+                    <Button form="headerForm" className="bg-blue-two w-3/6 m-auto py-1 rounded my-5 hover:bg-blue-three" type="submit" btnContent="Submit" />
                     
                 </form>
 

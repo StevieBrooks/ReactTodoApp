@@ -35,11 +35,11 @@ function Taskbar( { setTasks, filterModal, resetFunction, tagSelectOptions, time
     return (<>
         <div className="taskbar-inputs hidden sm:flex justify-center my-5">
 
-            <div className="taskbar-content  bg-blue-five p-2 rounded-md flex flex-col sm:flex-row items-center border border-blue-two">
+            <div className="taskbar-content  bg-blue-five p-2 rounded-md flex flex-col sm:flex-row items-center border-2 border-blue-two">
 
                 <div className="filt-reset-buttons">
-                    <Button className="bg-blue-two p-2  mx-1 rounded" btnContent={<FaArrowRotateLeft />} btnTask={resetFunction} />
-                    <Button className="bg-blue-two p-2  mx-1 rounded" btnContent={<FaFilter />} btnTask={filterModal} />
+                    <Button className="bg-blue-two p-2 mx-1 rounded hover:bg-blue-three" btnContent={<FaArrowRotateLeft />} btnTask={resetFunction} />
+                    <Button className="bg-blue-two p-2 mx-1 rounded hover:bg-blue-three" btnContent={<FaFilter />} btnTask={filterModal} />
                 </div>
 
                 <form id="taskbarForm" onSubmit={submitForm}>
@@ -57,7 +57,7 @@ function Taskbar( { setTasks, filterModal, resetFunction, tagSelectOptions, time
 
                     <input type="text" id="todoInput" className="m-2 p-1 bg-blue-four rounded border border-blue-two"placeholder="Add task..." onChange={(e) => setNewTask(e.target.value)} required/>
                 </form>
-                <Button form="taskbarForm" className="bg-blue-two px-2 py-1  mx-1 rounded" type="submit" btnContent="Submit" />
+                <Button form="taskbarForm" className="bg-blue-two px-2 py-1  mx-1 rounded hover:bg-blue-three" type="submit" btnContent="Submit" />
 
             </div>
 

@@ -56,15 +56,15 @@ function TaskCard( { tasks, setTasks, task, index, filtTasksActive, filteredTask
         }
     }
 
-    return (<div className="bg-blue-five p-3 border mx-auto rounded my-10 relative flex flex-col items-center w-5/6 sm:flex-row sm:justify-between phone:w-4/6">
+    return (<div className="bg-blue-five hover:bg-blue-four p-3 mx-auto rounded my-10 relative flex flex-col items-center w-5/6 sm:flex-row sm:justify-between phone:w-4/6 shadow-sm shadow-blue-one hover:-translate-y-0.5 transition-colors transition-transform">
     
-        <p className="text-center rounded-2xl border p-2 absolute -top-4 -left-5" style={condTypeStyling}>{task.type}</p>
-        <li className={`basis-6/12 text-start my-4 ${task.completed && "line-through"}`}>{task.task}</li>
-        <p className={`basis-2/12 text-center border-y sm:border-y-0 sm:border-x mb-4 sm:mb-0 sm:mx-2 p-1 ${task.completed && "line-through"}`}>{task.assigned}</p>
+        <p className="text-center rounded-2xl py-2 px-5 absolute -top-4 -left-5 border-4 border-blue-five font-medium" style={condTypeStyling}>{task.type}</p>
+        <li className={`basis-6/12 text-start my-5 ${task.completed && "line-through"}`}>{task.task}</li>
+        <p className={`basis-2/12 text-start border-y sm:border-y-0 sm:border-l mb-5 sm:mb-0 sm:mx-2 p-3 ${task.completed && "line-through"}`}>{task.assigned}</p>
         <div className={task.completed ? "hidden" : "basis-2/12 text-end"}>
-            <Button className="bg-blue-two p-2 mx-3 sm:my-1 rounded" id="doneButton" btnTask={doneClick} btnContent={<FaCheck />} />
-            <Button className="bg-blue-two p-2 mx-3 sm:my-1 rounded" id="doneButton" btnTask={editClick} btnContent={<FaPen />} />
-            <Button className="bg-blue-two p-2 mx-3 sm:my-1 rounded" id="delButton" btnTask={deleteClick} btnContent={<FaTrash />} />
+            <Button className="bg-blue-two p-2 mx-3 sm:my-1 rounded hover:bg-blue-three" id="doneButton" btnTask={doneClick} btnContent={<FaCheck />} />
+            <Button className="bg-blue-two p-2 mx-3 sm:my-1 rounded hover:bg-blue-three" id="doneButton" btnTask={editClick} btnContent={<FaPen />} />
+            <Button className="bg-blue-two p-2 mx-3 sm:my-1 rounded hover:bg-blue-three" id="delButton" btnTask={deleteClick} btnContent={<FaTrash />} />
         </div>
 
     </div>)

@@ -3,11 +3,8 @@
 @tailwind utilities;
 
 body {
-  background-color: #16324F;
+  background: linear-gradient(135deg, #16324F, #18435A);
   color: antiquewhite;
 }
 
-body.reverse {
-  background-color: antiquewhite;
-}
 
